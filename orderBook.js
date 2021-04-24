@@ -25,7 +25,12 @@ const possibleDeal = (existingBook, incomingOrder ) => {
 }
 
 const findDeal = (existingBook, incomingOrder) => {
-    
+    for (let i = 0; i < existingBook.length; i++) {
+        if (existingBook[i].type !== incomingOrder.type && (existingBook[i].price === incomingOrder.price)) {
+            return true
+        } 
+    }
+            return false
 
 }
    
