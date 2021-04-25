@@ -26,6 +26,10 @@ const reconcileOrder = (existingBook, incomingOrder) => {
   if (fulfillDeal2(existingBook, incomingOrder) === false) {
     return existingBook
   }
+
+  if (fulfillDeal3(existingBook, incomingOrder) === false) {
+    return existingBook
+  }
 }
 
 const possibleDeal = (existingBook, incomingOrder) => {
@@ -60,7 +64,17 @@ const fulfillDeal = (existingBook, incomingOrder) => {
 
 const fulfillDeal2 = (existingBook, incomingOrder) => {
   for (let i = 0; i < existingBook.length; i++) {
-    if (existingBook[i].type !== incomingOrder.type && (existingBook[i].quantity === incomingOrder.quantity)) {
+    if (existingBook[i].type === incomingOrder.type && (existingBook[i].quantity === incomingOrder.quantity)) {
+      return true
+    }
+  }
+
+  return false
+}
+
+const fulfillDeal3 = (existingBook, incomingOrder) => {
+  for (let i = 0; i < existingBook.length; i++) {
+    if (existingBook[i].type === incomingOrder.type && (existingBook[i].quantity < incomingOrder.quantity)) {
       return true
     }
   }
@@ -69,3 +83,4 @@ const fulfillDeal2 = (existingBook, incomingOrder) => {
 }
 
 module.exports = reconcileOrder
+
